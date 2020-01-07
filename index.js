@@ -4,19 +4,20 @@ const express = require('express');
 const app = express();
 const server = http.createServer(app);
 
-let objectNames = {
-    "oakley": "How wonderfully splendid it is to be in your presence again!",
-    "chris": "Oh hey...",
-    "milla": "Hello, "
+function greetingFor(whom) {
+    let objectNames = {
+        "oakley": "How wonderfully splendid it is to be in your presence again!",
+        "chris": "Oh hey...",
+        "milla": "Hello, "
+    };
+    const greeting = objectNames[whom] || `Hello, ${whom}!`;
+    return greeting;
+
 }
 
-app.get ('/:stuff', (req, res) => {
-    // console.log(objectNames[]);
-    // if (req.url.slice(1) === objectNames[0]) {
-    //     res.send('it works to some degree');
-    // } else{
-    //     res.send('not found')
-    // }
+app.get('/:stuff', (req, res) => {
+    justTheName = req.url.slice(1);
+    res.send(greetingFor(justTheName)); 
 })
 
 server.listen(PORT, () => { 
